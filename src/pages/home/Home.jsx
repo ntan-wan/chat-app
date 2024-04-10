@@ -1,17 +1,23 @@
 import { useEffect } from 'react'
 import { useContacts } from '@/hooks/useContacts'
-import { useSite } from '@/providers/SiteProvider'
+import { useSite } from '@/providers/SiteProvider';
+import {normalizeContactData} from '@/lib/utils'
 
 import {ContactSearch} from '@/components/contact/ContactSearch.jsx'
 import {ContactGroup} from '@/components/contact/ContactGroup.jsx'
 import { Chat } from '@/components/chat/Chat'
-import { UserDetails } from '@/components/user/UserDetails'
+import { UserDetails } from '@/components/user/UserDetails';
 
 export function Home() {
-    const {setUserId} = useSite()
+    const {setUserId, setNormalizedContactData} = useSite()
     const [contactsData] = useContacts();
 
-    useEffect(() => {contactsData && setUserId(contactsData[0].id)} ,[contactsData])
+    useEffect(() => {
+        if (contactsData) {
+            setUserId(contactsData[0].id);
+            setNormalizedContactData(normalizeContactData(contactsData))
+        }
+    } ,[contactsData])
 
     return (<div className="flex gap-4">
         <div className="w-3/12 flex flex-col gap-4">

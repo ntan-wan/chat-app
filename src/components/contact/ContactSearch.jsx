@@ -14,12 +14,12 @@ import { Skeleton } from "@/components/ui/Skeleton"
 
 function ContactDisplayer({ contact }) {
 
-    const {setUserId} = useSite()
-    
+    const { setUserId } = useSite()
+
     const handleClick = (contactData) => {
         setUserId(contactData.id)
     }
-    
+
     return (
         <div className="flex gap-3 p-3 hover:bg-neutral-100 cursor-pointer rounded-lg" onClick={() => handleClick(contact)}>
             <div><Avatar url={contact.profileImage} /></div>
@@ -59,9 +59,9 @@ export function ContactSearch() {
         <div className='mt-4'>
 
             {isLoading && <div className='flex flex-col gap-4'>
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
+                <Skeleton />
+                <Skeleton />
+                <Skeleton />
             </div>}
 
             {!isLoading && filteredContact.length ?

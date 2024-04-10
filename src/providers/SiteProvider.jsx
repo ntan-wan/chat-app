@@ -3,17 +3,22 @@ import PropTypes from 'prop-types'
 
 const SiteContext = createContext({
     userId: null,
-    setUserId:() => {}
+    setUserId:() => {},
+    normalizedContactData : [],
+    setNormalizedContactData: () => {}
 })
 
 export const useSite = () => useContext(SiteContext);
 
 export function SiteProvider({children}) {
-    const [userId, setUserId] = useState(null)
+    const [userId, setUserId] = useState(null);
+    const [normalizedContactData, setNormalizedContactData] = useState([])
     
     const value = {
         userId,
-        setUserId
+        setUserId,
+        normalizedContactData,
+        setNormalizedContactData
     }
 
     return(

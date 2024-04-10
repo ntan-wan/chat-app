@@ -11,9 +11,9 @@ export function formatTime(isoString) {
   return date;
 }
 
-export function normalizeContactData(users) {
+export function normalizeContactData(contacts) {
   const normalizedData = {};
-  users.forEach(contact => {
+  contacts.forEach(contact => {
       normalizedData[contact.id] = contact;
   });
   return normalizedData;

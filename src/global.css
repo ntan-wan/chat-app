@@ -43,7 +43,7 @@
         @apply bg-primary rounded-e-2xl px-3 py-4 w-16 transition-all overflow-hidden;
 
             &:hover {
-            @apply  w-52;
+            @apply  w-56;
 
         }
 

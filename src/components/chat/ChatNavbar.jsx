@@ -1,3 +1,5 @@
+import { useSite } from '@/providers/SiteProvider';
+
 import { Avatar } from '@/components/ui/Avatar'
 import { MagnifyingGlass } from '@/components/icons/MagnifyingGlass'
 import {Input} from '@/components/ui/Input'
@@ -7,15 +9,19 @@ import { ElipsisVertical } from '@/components/icons/ElipsisVertical'
 import { Video } from '@/components/icons/Video'
 
 export function ChatNavbar() {
+    const {userId, normalizedContactData} = useSite();
+
+    const contact = normalizedContactData[userId];
+
     return <nav>
         <nav className='flex items-center justify-between border-b border-neutral-300 p-3 pb-4'>
             <div className='flex gap-3'>
                 <div>
-                    <Avatar />
+                    {contact && <Avatar url={contact?.profileImage}/> }
                 </div>
                 <div>
                     <p className='font-semibold'>Kevin</p>
-                    <p className='text-sm text-neutral-500'>UI / UX Designer</p>
+                    <p className='text-sm text-neutral-500'>{contact?.position}</p>
                 </div>
             </div>
             <div className='flex items-center gap-3'>

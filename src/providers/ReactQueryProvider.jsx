@@ -5,13 +5,13 @@ import {
 } from '@tanstack/react-query'
 import PropTypes from 'prop-types'
 
-const queryClient = new QueryClient()
+export const queryClient = new QueryClient()
 
-export const useReactQuery = (key) => {
-  const queryClient = useQueryClient()
+// export const useReactQuery = (key) => {
+//   const queryClient = useQueryClient()
 
-  return queryClient.getQueryData([key])
-}
+//   return queryClient.getQueryData([key])
+// }
 
 export function ReactQueryProvider({ children }) {
   return (
