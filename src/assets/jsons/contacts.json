@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "username": "Jonathan",
+        "position": "Frontend Developer",
+        "address": "Malaysia",
+        "phone": "+60161111222",
+        "email": "jonathan@test.com",
+        "profileImage": "https://picsum.photos/id/91/500/500"
+    },
+    {
+        "id": 2,
+        "username": "Elizabeth Jan",
+        "position": "Backend Developer",
+        "address": "Malaysia",
+        "phone": "+60161111333",
+        "email": "elizabeth@test.com",
+        "profileImage": "https://picsum.photos/id/454/500/500"
+    },
+    {
+        "id": 3,
+        "username": "Kevin",
+        "position": "UI/UX Designer",
+        "address": "San Francisco, california",
+        "phone": "+60161156222",
+        "email": "Kevin@test.com",
+        "profileImage": "https://picsum.photos/id/669/500/500"
+    },
+    {
+        "id": 4,
+        "username": "Michael Sean",
+        "position": "Team Lead",
+        "address": "USA",
+        "phone": "+601617811222",
+        "email": "Michael@test.com",
+        "profileImage": "https://picsum.photos/id/823/500/500"
+    },
+    {
+        "id": 5,
+        "username": "Harry Potter",
+        "position": "Interviewee",
+        "address": "United Kingdom",
+        "phone": "+44 1617811222",
+        "email": "potter@test.com",
+        "profileImage": "https://picsum.photos/id/9/500/500"
+    }
+]

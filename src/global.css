@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --color-primary: 94,74,227
+    }
+
+    img {
+        @apply object-contain
+    }
+
+    textarea:focus, input:focus{
+        outline: none;
+    }
+
+    h1 {
+        @apply text-2xl font-bold;
+    }
+
+    h3 {
+        @apply text-lg
+    }
+}
+
+
+@layer utilities {
+    .c-field {
+        label {
+            @apply block mb-1 text-neutral-500;
+
+            & + * {
+                @apply font-bold
+            }
+        }
+
+    }
+}
+
+@layer components {
+    .c-sidebar {
+        @apply bg-primary rounded-e-2xl px-3 py-4 w-16 transition-all overflow-hidden;
+
+            &:hover {
+            @apply  w-52;
+
+        }
+
+        .c-sidebar-item {
+            @apply p-3 flex items-center cursor-pointer whitespace-nowrap gap-5 hover:bg-indigo-400 rounded-lg
+        }
+    }
+
+    .c-layout {
+        @apply min-h-screen flex flex-col;
+
+        .c-layout-content {
+            @apply flex gap-4 grow;
+        }
+
+        .c-layout-child {
+            @apply grow;
+
+            & > * {
+                @apply h-full
+            }
+        }
+
+    }
+}

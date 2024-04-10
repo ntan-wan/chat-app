@@ -1,0 +1,17 @@
+[
+    {
+    "id": 3,
+    "fromUser": 3,
+    "toUser": 5,
+    "message": "Lorem Ipsum 3 (From Kevin) is simply dummy text of the printing and typesetting industry.",
+    "timestamp": 1707719080000
+    },
+    {
+    "id": 5,
+    "fromUser": 5,
+    "toUser": 3,
+    "message": "Lorem Ipsum 5 (To Kevin) is simply dummy text of the printing and typesetting industry.",
+    "image": "https://picsum.photos/id/8/500/500",
+    "timestamp": 1707719260000
+    }
+    ]
