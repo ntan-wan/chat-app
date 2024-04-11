@@ -55,9 +55,9 @@ export function ChatTextArea({ className }) {
         setInputValue(inputValue);
     }
 
-    return <form onSubmit={(e) => handleOnSubmit(e)} className={cn('border-t p-3 border-neutral-300 flex items-center justify-between gap-4', className)}>
+    return <form onSubmit={(e) => handleOnSubmit(e)} className={cn('border-t p-3 border-neutral-300 flex  flex-col justify-between gap-4 sm:flex-row sm:items-center', className)}>
         <Input value={inputValue} onChange={(e) => handleOnChange(e.target.value)} placeholder="Type a message here.." className='grow' />
-        <ul className='flex items-center gap-2'>
+        <ul className='flex items-center justify-end gap-2'>
             {utils.map((util) => <li key={util.label}>
                 <Button variant='iconOnly'>
                     <util.Icon />

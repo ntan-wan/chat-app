@@ -7,3 +7,11 @@ export async function getContacts() {
 
     return res;
 } 
+
+export async function getContactById(key, userId) {
+    const res = await axios.get(`http://18.143.79.95/api/chatSystem/user/${userId}`, {
+     
+    })
+
+return res;
+}

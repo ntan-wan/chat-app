@@ -8,7 +8,7 @@
     }
 
     img {
-        @apply object-contain
+        @apply object-contain rounded-lg
     }
 
     textarea:focus, input:focus{
@@ -28,7 +28,7 @@
 @layer utilities {
     .c-field {
         label {
-            @apply block mb-1 text-neutral-500;
+            @apply block  text-neutral-500;
 
             & + * {
                 @apply font-bold
@@ -40,7 +40,7 @@
 
 @layer components {
     .c-sidebar {
-        @apply bg-primary rounded-e-2xl px-3 pl-1 py-4 w-[55px] transition-all overflow-hidden;
+        @apply bg-primary rounded-e-2xl px-3 pl-1 py-4 w-[55px] transition-all overflow-hidden fixed z-20;
 
             &:hover {
             @apply  w-56;
@@ -60,7 +60,7 @@
         }
 
         .c-layout-child {
-            @apply grow;
+            @apply grow md:pl-20;
 
             & > * {
                 @apply h-full

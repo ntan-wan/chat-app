@@ -21,17 +21,22 @@ function ContactDisplayer({ contact }) {
     const queryClient = useQueryClient();
     const chatsData = queryClient.getQueryData(['getChats'])?.data
 
-    let chats = [];
+    let personalChat = [];
     let latestChat = null
 
     if (chatsData) {
-        chats = chatsData.filter((chat) => chat.fromUser === contact.id || chat.toUser === contact.id);
-        latestChat = chats.reduce((latest, current) => {
-            return current.timestamp > latest.timestamp ? current : latest
-        }, chats[0])
-        if (chats.length === chatsData.length) {
+        if (contact.id === MY_USER_ID) {
+            personalChat = chatsData.filter((chat) => chat.fromUser === contact.id && chat.toUser === contact.id);
+        } else {
+            personalChat = chatsData.filter((chat) => chat.fromUser === contact.id || chat.toUser === contact.id);
+        }
+        if (personalChat.length === chatsData.length) {
             latestChat = null
         }
+        latestChat = personalChat.reduce((latest, current) => {
+            return current.timestamp > latest.timestamp ? current : latest
+        }, personalChat[0])
+     
     }
 
     const handleClick = (contactData) => {
@@ -48,7 +53,7 @@ function ContactDisplayer({ contact }) {
                 </p>
                 {
                     latestChat && <>
-                        <p className="mt-1 text-neutral-400 text-sm truncate text-ellipsis w-48">{latestChat?.message}</p>
+                        <p className="mt-1 text-neutral-400 text-sm truncate text-ellipsis w-48 sm:w-96 md:w-20 lg:w-50 xl:w-52">{latestChat?.message}</p>
                         <p className="flex justify-between items-center text-xs font-bold"><span className='text-xs text-neutral-500 font-medium'>{formatTime(latestChat?.timestamp)}</span> <Tick /></p>
                     </>
                 }
@@ -65,12 +70,10 @@ export function ContactSearch() {
     const [searchValue, setSearchValue] = useState('');
     const [contactsData, isLoading] = useContacts();
 
-    let contacts = []
     let filteredContact = [];
 
     if (contactsData) {
-        contacts = contactsData;
-        filteredContact = contacts.filter((contact) => contact.username.toLowerCase().includes(searchValue.toLowerCase()))
+        filteredContact = contactsData.filter((contact) => contact.username.toLowerCase().includes(searchValue.toLowerCase()))
     }
 
     const handleSearch = (value) => {
