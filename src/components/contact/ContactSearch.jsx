@@ -2,8 +2,9 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { useContacts } from '@/hooks/useContacts'
 import { useSite } from '@/providers/SiteProvider'
-import { useChats } from '@/hooks/useChats'
 import { formatTime } from '@/lib/utils'
+import { useQueryClient } from '@tanstack/react-query';
+import { MY_USER_ID } from '@/constants'
 
 import { Input } from "@/components/ui/Input"
 import { Avatar } from "@/components/ui/Avatar"
@@ -17,9 +18,9 @@ import { Skeleton } from "@/components/ui/Skeleton"
 function ContactDisplayer({ contact }) {
 
     const { setUserId } = useSite()
-    const [chatsData] = useChats();
+    const queryClient = useQueryClient();
+    const chatsData = queryClient.getQueryData(['getChats'])?.data
 
-    const myUserId = 5;
     let chats = [];
     let latestChat = null
 
@@ -43,7 +44,7 @@ function ContactDisplayer({ contact }) {
             <div className="grow">
                 <p className="flex justify-between">
                     {contact.username}
-                    {latestChat && latestChat?.fromUser !== myUserId && <Badge>1</Badge>}
+                    {latestChat && latestChat?.fromUser !== MY_USER_ID && <Badge>1</Badge>}
                 </p>
                 {
                     latestChat && <>
@@ -77,7 +78,7 @@ export function ContactSearch() {
     }
 
     return (<Card>
-        <Input Icon={MagnifyingGlass} placeholder="Search Contact" value={searchValue} handleOnChange={(e) => handleSearch(e.target.value)} />
+        <Input Icon={MagnifyingGlass} placeholder="Search Contact" value={searchValue} onChange={(e) => handleSearch(e.target.value)} />
         <div className='mt-4'>
 
             {isLoading && <div className='flex flex-col gap-4'>

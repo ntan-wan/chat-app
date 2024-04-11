@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useContacts } from '@/hooks/useContacts'
 import { useSite } from '@/providers/SiteProvider';
 import {normalizeContactData} from '@/lib/utils'
+import { useChats } from '@/hooks/useChats'
 
 import {ContactSearch} from '@/components/contact/ContactSearch.jsx'
 import {ContactGroup} from '@/components/contact/ContactGroup.jsx'
@@ -11,6 +12,7 @@ import { UserDetails } from '@/components/user/UserDetails';
 export function Home() {
     const {setUserId, setNormalizedContactData} = useSite()
     const [contactsData] = useContacts();
+    useChats();
 
     useEffect(() => {
         if (contactsData) {

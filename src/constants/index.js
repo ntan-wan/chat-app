@@ -1,0 +1,1 @@
+export const MY_USER_ID = 5;
