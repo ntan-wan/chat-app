@@ -8,7 +8,8 @@ export const useSite = () => useContext(SiteContext);
 export function SiteProvider({children}) {
     const [userId, setUserId] = useState(null);
     const [normalizedContactData, setNormalizedContactData] = useState([]);
-    const [filterKeyword , setFilterKeyword] = useState('')
+    const [filterKeyword , setFilterKeyword] = useState('');
+    const [sidebarOverlayIsOpen , setSidebarOverlayIsOpen] = useState(false);
 
     const value = {
         userId,
@@ -16,7 +17,9 @@ export function SiteProvider({children}) {
         normalizedContactData,
         setNormalizedContactData,
         filterKeyword,
-        setFilterKeyword
+        setFilterKeyword,
+        sidebarOverlayIsOpen,
+        setSidebarOverlayIsOpen
     }
 
     return(

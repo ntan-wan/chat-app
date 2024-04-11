@@ -7,6 +7,27 @@
         --color-primary: 94,74,227
     }
 
+ /* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px; 
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neutral-300
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-neutral-400
+  }
+
     img {
         @apply object-contain rounded-lg
     }
@@ -46,10 +67,10 @@
             @apply  w-56;
 
         }
+    }
 
-        .c-sidebar-item {
-            @apply p-3 flex items-center cursor-pointer whitespace-nowrap gap-6 hover:bg-indigo-400 rounded-lg
-        }
+    .c-sidebar-item {
+        @apply p-3 flex items-center cursor-pointer whitespace-nowrap gap-6 hover:bg-indigo-400 rounded-lg
     }
 
     .c-layout {
@@ -60,7 +81,7 @@
         }
 
         .c-layout-child {
-            @apply grow md:pl-20;
+            @apply grow md:pl-12;
 
             & > * {
                 @apply h-full

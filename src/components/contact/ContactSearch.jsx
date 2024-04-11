@@ -5,6 +5,7 @@ import { useSite } from '@/providers/SiteProvider'
 import { formatTime } from '@/lib/utils'
 import { useQueryClient } from '@tanstack/react-query';
 import { MY_USER_ID } from '@/constants'
+import { scrollToView } from '@/lib/utils'
 
 import { Input } from "@/components/ui/Input"
 import { Avatar } from "@/components/ui/Avatar"
@@ -41,6 +42,9 @@ function ContactDisplayer({ contact }) {
 
     const handleClick = (contactData) => {
         setUserId(contactData.id)
+        if (window.innerWidth < 768) {
+            scrollToView('chats')
+        }
     }
 
     return (
@@ -80,16 +84,16 @@ export function ContactSearch() {
         setSearchValue(value);
     }
 
-    return (<Card >
+    return (<Card>
         <Input Icon={MagnifyingGlass} placeholder="Search Contact" value={searchValue} onChange={(e) => handleSearch(e.target.value)} />
-        <div className='mt-4'>
+        <div className='mt-4 overflow-auto h-[360px]'>
 
             {isLoading && <div className='flex flex-col gap-4'>
                 <Skeleton />
                 <Skeleton />
                 <Skeleton />
             </div>}
-
+            
             {!isLoading && filteredContact.length ?
                 filteredContact.map((contact) => <ContactDisplayer key={contact.id} contact={contact} />) : <p className='p-3 text-center text-neutral-400'><i >No Contact Found</i></p>
             }

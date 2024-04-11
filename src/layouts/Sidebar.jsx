@@ -1,3 +1,7 @@
+import {cn} from '@/lib/utils'
+import PropTypes from 'prop-types'
+
+
 import { User } from '@/components/icons/User';
 import { Building } from '@/components/icons/Building';
 import { Gear } from '@/components/icons/Gear';
@@ -6,7 +10,7 @@ import { Mail } from '@/components/icons/Mail';
 import { Calendar } from '@/components/icons/Calendar';
 import { Home } from '@/components/icons/Home';
 
-export function Sidebar() {
+export function Sidebar({className}) {
 
     const scrollToTop = () => {
         window.scrollTo({
@@ -25,7 +29,7 @@ export function Sidebar() {
         { label: 'User', Icon: User },
     ]
 
-    return <nav className="c-sidebar">
+    return <nav className={cn('c-sidebar', className)}>
         <ul>
             {navItems.map((item) => <li onClick={() => item.handleClick()} key={item.label} className='c-sidebar-item text-white'>
                 <item.Icon className='shrink-0' />
@@ -33,4 +37,8 @@ export function Sidebar() {
             </li>)}
         </ul>
     </nav>
+}
+
+Sidebar.propTypes = {
+    className:PropTypes.string
 }

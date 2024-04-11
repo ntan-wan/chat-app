@@ -8,7 +8,7 @@ import { ChatContent } from '@/components/chat/ChatContent'
 
 
 export function Chat({className}) {
-    return <Card className={cn('h-full flex flex-col', className)}>
+    return <Card id='chats' className={cn('h-full flex flex-col', className)}>
         <ChatNavbar />
         <ChatContent />
         <ChatTextArea className='mt-auto'/>

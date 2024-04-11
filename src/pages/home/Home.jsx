@@ -35,14 +35,14 @@ export function Home() {
     // </div>)
 
     return (<div className="flex flex-wrap  flex-col  md:flex-row">
-        <div className="w-full flex flex-col gap-4 sm:p-2 md:w-4/12 lg:w-3/12">
+        <div className="w-full flex flex-col gap-4 py-2 sm:px-2 md:w-4/12 lg:w-3/12">
             <ContactSearch />
             <ContactGroup />
         </div>
-        <div className="flex flex-col w-full sm:p-2 md:w-8/12 lg:w-6/12">
+        <div className="flex flex-col w-full py-2 sm:px-2 md:w-8/12 lg:w-6/12">
             <Chat />
         </div>
-        <div className="w-full sm:p-2 md:w-full lg:w-3/12">
+        <div className="w-full py-2 sm:px-2 md:w-full lg:w-3/12">
             <UserDetails />
         </div>
     </div>)
