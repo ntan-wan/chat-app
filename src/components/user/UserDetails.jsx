@@ -1,4 +1,3 @@
-import dummyUserDetail from '@/assets/jsons/userDetail.json'
 import PropTypes from 'prop-types'
 import { cn } from '@/lib/utils'
 import { useSite } from '@/providers/SiteProvider';
@@ -45,9 +44,9 @@ export function UserDetails() {
     const user = normalizedContactData[userId]
 
     return (<Card className='h-full p-0 overflow-hidden'>
-        <div className='relative'>
-            <LazyLoadImage  src={user?.profileImage} className=' max-w-full rounded-bl-lg rounded-br-lg z-10' />
-            <UserCard user={user} className=' w-10/12 absolute bottom-[-25%] right-[9%] ' />
+        <div className='relative flex justify-center'>
+            <LazyLoadImage  src={user?.profileImage} className='rounded-bl-lg rounded-br-lg z-10' />
+            <UserCard user={user} className=' w-10/12 absolute bottom-[-25%] right-[9%] z-10' />
         </div>
 
 

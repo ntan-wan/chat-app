@@ -59,7 +59,7 @@ function GroupDisplayer({ group }) {
             <AvatarAlphabet label={group.name[0]} variant={group.id}/>
         </div>
         <div className='flex justify-between items-center grow'>
-            <p>{group.name}</p>
+            <p className=' truncate text-ellipsis sm:w-96 md:w-20 lg:w-50 xl:w-full'>{group.name}</p>
             <AvatarGroup usersArr={filteredContactsArr}/>
         </div>
     </div>)
