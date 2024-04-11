@@ -9,6 +9,8 @@ import { ChatBubble } from '@/components/icons/ChatBubble';
 import { Mail } from '@/components/icons/Mail';
 import { Calendar } from '@/components/icons/Calendar';
 import { Home } from '@/components/icons/Home';
+import { Coin } from '@/components/icons/Coin';
+import { Receipt } from '@/components/icons/Receipt';
 
 export function Sidebar({className}) {
 
@@ -22,7 +24,9 @@ export function Sidebar({className}) {
     const navItems = [
         { label: 'Home', Icon: Home, handleClick: scrollToTop },
         { label: 'Organizations', Icon: Building },
+        { label: 'Coin', Icon: Coin  },
         { label: 'Mail', Icon: Mail },
+        { label: 'Receipt', Icon: Receipt },
         { label: 'Chat', Icon: ChatBubble },
         { label: 'Calendar', Icon: Calendar },
         { label: 'Options', Icon: Gear },

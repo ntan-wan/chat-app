@@ -9,6 +9,8 @@ import { ChatBubble } from '@/components/icons/ChatBubble';
 import { Mail } from '@/components/icons/Mail';
 import { Calendar } from '@/components/icons/Calendar';
 import { Home } from '@/components/icons/Home';
+import { Coin } from '@/components/icons/Coin';
+import { Receipt } from '@/components/icons/Receipt';
 
 
 export function SidebarOverlay({ isOpen, toggleDrawer }) {
@@ -23,7 +25,9 @@ export function SidebarOverlay({ isOpen, toggleDrawer }) {
     const navItems = [
         { label: 'Home', Icon: Home, handleClick: () => {scrollToTop(); toggleDrawer()} },
         { label: 'Organizations', Icon: Building, handleClick:toggleDrawer},
+        { label: 'Coin', Icon: Coin ,  handleClick:toggleDrawer },
         { label: 'Mail', Icon: Mail,  handleClick:toggleDrawer },
+        { label: 'Receipt', Icon: Receipt ,  handleClick:toggleDrawer },
         { label: 'Chat', Icon: ChatBubble,  handleClick:toggleDrawer },
         { label: 'Calendar', Icon: Calendar,  handleClick:toggleDrawer },
         { label: 'Options', Icon: Gear ,  handleClick:toggleDrawer},
