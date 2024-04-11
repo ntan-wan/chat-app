@@ -27,7 +27,7 @@ export function SidebarOverlay({ isOpen, toggleDrawer }) {
         { label: 'Chat', Icon: ChatBubble,  handleClick:toggleDrawer },
         { label: 'Calendar', Icon: Calendar,  handleClick:toggleDrawer },
         { label: 'Options', Icon: Gear ,  handleClick:toggleDrawer},
-        { label: 'User', Icon: User ,  handleClick:toggleDrawer},
+        { label: 'User', Icon: User ,  handleClick:toggleDrawer },
     ]
 
     return (
