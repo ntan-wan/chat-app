@@ -9,8 +9,8 @@ export function AvatarGroup({ usersArr, className }) {
     return (<div className={cn('flex', className)}>
         {
             usersLength ? <>
-                <Avatar className='w-10' />
-                <Avatar className={cn('w-10 ml-[-20px] z-10', { 'hidden': usersLength <= 1 })} />
+                <Avatar className='w-10' url={usersArr[0]?.profileImage}/>
+                <Avatar url={ usersArr[1]?.profileImage} className={cn('w-10 ml-[-20px] z-10', { 'hidden': usersLength <= 1 })} />
                 <Avatar className={cn('w-10 ml-[-20px] z-20', { 'hidden': usersLength <= 2 })} number={usersLength - 2} />
             </> : ''
         }

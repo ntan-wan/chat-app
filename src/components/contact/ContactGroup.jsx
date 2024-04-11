@@ -1,4 +1,5 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
+import { useSite } from '@/providers/SiteProvider';
 
 import { Card } from '@/components/ui/Card'
 import { AvatarAlphabet } from '@/components/ui/AvatarAlphabet'
@@ -49,13 +50,17 @@ const dummyGroup = [
 ]
 
 function GroupDisplayer({ group }) {
+    const {normalizedContactData} = useSite()
+
+    const filteredContactsArr = group.users.map((user) => normalizedContactData[user]);
+    
     return (<div className='pb-3 flex items-center  gap-3'>
         <div>
             <AvatarAlphabet label={group.name[0]} variant={group.id}/>
         </div>
         <div className='flex justify-between items-center grow'>
             <p>{group.name}</p>
-            <AvatarGroup usersArr={group.users}/>
+            <AvatarGroup usersArr={filteredContactsArr}/>
         </div>
     </div>)
 }

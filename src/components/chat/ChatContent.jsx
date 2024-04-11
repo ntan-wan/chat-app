@@ -4,6 +4,8 @@ import { getChatById } from '@/services/serviceChat';
 import {useSite} from '@/providers/SiteProvider';
 import PropTypes from 'prop-types'
 import { formatTime } from '@/lib/utils';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import {cn} from '@/lib/utils'
 
 function ChatReply({chat, contact}) {
     return (
@@ -11,9 +13,14 @@ function ChatReply({chat, contact}) {
             <div>
                 <Avatar url={contact.profileImage}/>
             </div>
-            <div >
+            <div>
                 <p><b>{contact.username} </b><span className='text-neutral-400 text-sm ml-1'> {formatTime(chat.timestamp)}</span></p>
-                <p className='mt-3 bg-white p-3 border border-neutral-300 rounded-tr-lg rounded-br-lg rounded-bl-lg shadow shadow-neutral-300'>{chat.message}</p>
+                <p className='mt-3 bg-white p-3 border border-neutral-300 rounded-tr-lg rounded-br-lg rounded-bl-lg shadow shadow-neutral-300'>
+                    {chat.message}
+                    {chat.image &&
+                        <LazyLoadImage height={100} width={200} className={cn('rounded-lg mt-3')} src={chat.image}/>
+                    }
+                    </p>
             </div>
         </div>
     )

@@ -2,6 +2,8 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { useContacts } from '@/hooks/useContacts'
 import { useSite } from '@/providers/SiteProvider'
+import { useChats } from '@/hooks/useChats'
+import { formatTime } from '@/lib/utils'
 
 import { Input } from "@/components/ui/Input"
 import { Avatar } from "@/components/ui/Avatar"
@@ -15,6 +17,21 @@ import { Skeleton } from "@/components/ui/Skeleton"
 function ContactDisplayer({ contact }) {
 
     const { setUserId } = useSite()
+    const [chatsData] = useChats();
+
+    const myUserId = 5;
+    let chats = [];
+    let latestChat = null
+
+    if (chatsData) {
+        chats = chatsData.filter((chat) => chat.fromUser === contact.id || chat.toUser === contact.id);
+        latestChat = chats.reduce((latest, current) => {
+            return current.timestamp > latest.timestamp ? current : latest
+        }, chats[0])
+        if (chats.length === chatsData.length) {
+            latestChat = null
+        }
+    }
 
     const handleClick = (contactData) => {
         setUserId(contactData.id)
@@ -24,11 +41,16 @@ function ContactDisplayer({ contact }) {
         <div className="flex gap-3 p-3 hover:bg-neutral-100 cursor-pointer rounded-lg" onClick={() => handleClick(contact)}>
             <div><Avatar url={contact.profileImage} /></div>
             <div className="grow">
-                <p className="flex justify-between">{contact.username}
-                    <Badge>{contact.notification}</Badge>
+                <p className="flex justify-between">
+                    {contact.username}
+                    {latestChat && latestChat?.fromUser !== myUserId && <Badge>1</Badge>}
                 </p>
-                <p className="text-neutral-400">{contact.lastText}</p>
-                <p className="flex justify-between items-center text-xs font-bold">{contact.updatedAt} <Tick /></p>
+                {
+                    latestChat && <>
+                        <p className="mt-1 text-neutral-400 text-sm truncate text-ellipsis w-48">{latestChat?.message}</p>
+                        <p className="flex justify-between items-center text-xs font-bold"><span className='text-xs text-neutral-500 font-medium'>{formatTime(latestChat?.timestamp)}</span> <Tick /></p>
+                    </>
+                }
             </div>
         </div>
     )

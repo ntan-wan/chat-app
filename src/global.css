@@ -40,7 +40,7 @@
 
 @layer components {
     .c-sidebar {
-        @apply bg-primary rounded-e-2xl px-3 py-4 w-16 transition-all overflow-hidden;
+        @apply bg-primary rounded-e-2xl px-3 pl-1 py-4 w-16 transition-all overflow-hidden;
 
             &:hover {
             @apply  w-56;
@@ -48,7 +48,7 @@
         }
 
         .c-sidebar-item {
-            @apply p-3 flex items-center cursor-pointer whitespace-nowrap gap-5 hover:bg-indigo-400 rounded-lg
+            @apply p-3 flex items-center cursor-pointer whitespace-nowrap gap-6 hover:bg-indigo-400 rounded-lg
         }
     }
 

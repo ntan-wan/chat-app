@@ -20,7 +20,7 @@ export function ChatNavbar() {
                     {contact && <Avatar url={contact?.profileImage}/> }
                 </div>
                 <div>
-                    <p className='font-semibold'>Kevin</p>
+                    <p className='font-semibold'>{contact?.username}</p>
                     <p className='text-sm text-neutral-500'>{contact?.position}</p>
                 </div>
             </div>
