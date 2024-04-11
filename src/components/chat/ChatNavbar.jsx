@@ -13,13 +13,12 @@ import { Video } from '@/components/icons/Video'
 export function ChatNavbar() {
     
     // const queryClient = useQueryClient();
-    const {userId, normalizedContactData} = useSite();
-    const [searchValue, setSearchValue] = useState('')
+    const {userId, normalizedContactData, filterKeyword, setFilterKeyword} = useSite();
 
     const contact = normalizedContactData[userId];
 
     const handleSearch = (value) => {
-        setSearchValue(value);
+        setFilterKeyword(value);
     }
 
     return <nav>
@@ -34,7 +33,7 @@ export function ChatNavbar() {
                 </div>
             </div>
             <div className='flex items-center gap-3'>
-                <Input Icon={MagnifyingGlass} placeholder="Search"  value={searchValue}  onChange={(e) => handleSearch(e.target.value)}/>
+                <Input Icon={MagnifyingGlass} placeholder="Search"  value={filterKeyword}  onChange={(e) => handleSearch(e.target.value)}/>
                 <Button variant='circle'>
                     <Phone />
                 </Button>

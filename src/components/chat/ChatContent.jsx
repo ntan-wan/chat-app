@@ -1,5 +1,4 @@
 import { useEffect,  useState} from 'react';
-import { Avatar } from '@/components/ui/Avatar';
 import { getChatById } from '@/services/serviceChat';
 import {useSite} from '@/providers/SiteProvider';
 import PropTypes from 'prop-types'
@@ -7,6 +6,8 @@ import { formatTime } from '@/lib/utils';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import {cn} from '@/lib/utils'
 import { MY_USER_ID } from '@/constants';
+
+import { Avatar } from '@/components/ui/Avatar';
 
 function ChatReply({chat, contact}) {
     return (
@@ -51,9 +52,10 @@ ChatForward.propTypes = {
 
 export function ChatContent() {
 
-    const {userId, normalizedContactData} = useSite()
+    const {userId, normalizedContactData, filterKeyword} = useSite()
     const [chats , setChats] = useState([])
 
+    let filteredChat = [];
 
     useEffect( () => {
         if (userId) {
@@ -64,16 +66,21 @@ export function ChatContent() {
         }
     }, [userId])
 
-    if (!chats.length) {
+
+    if (chats.length) {
+        filteredChat = chats.filter((chat) =>chat.message.toLowerCase().includes(filterKeyword.toLowerCase()))
+    }
+
+    if (!filteredChat.length) {
         return (
             <p className='text-center text-neutral-400 pt-3'><i>No Chats Found</i></p>
         )
     }
 
     return (
-        <div className='flex flex-col gap-4 pt-3'>
+        <div className='flex flex-col gap-4 pt-3 overflow-auto '>
 
-            {chats.length && chats.map((chat) => {
+            {filteredChat.length && filteredChat.map((chat) => {
                 if (chat.fromUser === MY_USER_ID) {
                     return <ChatForward key={chat.id} chat={chat} contact={normalizedContactData[chat.fromUser]}/>
                 } else  {
