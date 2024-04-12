@@ -84,7 +84,7 @@ export function ContactSearch() {
         setSearchValue(value);
     }
 
-    return (<Card>
+    return (<Card >
         <Input Icon={MagnifyingGlass} placeholder="Search Contact" value={searchValue} onChange={(e) => handleSearch(e.target.value)} />
         <div className='mt-4 overflow-auto h-[360px]'>
 

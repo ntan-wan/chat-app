@@ -22,15 +22,9 @@ export async function addChat(data) {
         message:data.message
     }
     const config = {
-        // headers: {
-        // "Content-Type" : "application/json",
-        // "Access-Control-Allow-Headers": "*", // this will allow all CORS requests
-        // "Access-Control-Allow-Methods": 'POST, GET, PUT, OPTIONS, DELETE',
-        // "Access-Control-Allow-Headers": "*",
-        // "Access-Control-Allow-Methods": "POST, GET, PUT, OPTIONS, DELETE",
-        // "Accept" : "*/*"
-        // "Access-Control-Request-Headers": "Access-Control-Allow-Headers",
-    // }
+        headers: {
+        "Content-Type" : "application/json",
+    }
 }
 
     const res = await axios.post(url, payload, config)

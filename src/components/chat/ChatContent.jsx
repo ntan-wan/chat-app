@@ -1,4 +1,4 @@
-import { useEffect,  useState} from 'react';
+import { useEffect,  useRef} from 'react';
 import { getChatById } from '@/services/serviceChat';
 import {useSite} from '@/providers/SiteProvider';
 import PropTypes from 'prop-types'
@@ -52,23 +52,26 @@ ChatForward.propTypes = {
 
 export function ChatContent() {
 
-    const {userId, normalizedContactData, filterKeyword} = useSite()
-    const [chats , setChats] = useState([])
-
+    const {userId, normalizedContactData, filterKeyword, personalChat, setPersonalChat} = useSite()
+    const listRef = useRef(null);
     let filteredChat = [];
 
     useEffect( () => {
         if (userId) {
             (async () => {
                 const res = await getChatById(null, userId);
-                setChats(res.data)
+                setPersonalChat(res.data)
             })()
         }
     }, [userId])
 
+    useEffect(() => {
+        listRef.current?.lastElementChild?.scrollIntoView()
+    }, [personalChat])
 
-    if (chats.length) {
-        filteredChat = chats.filter((chat) =>chat.message.toLowerCase().includes(filterKeyword.toLowerCase()))
+
+    if (personalChat.length) {
+        filteredChat = personalChat.filter((chat) =>chat.message.toLowerCase().includes(filterKeyword.toLowerCase()))
     }
 
     if (!filteredChat.length) {
@@ -78,7 +81,7 @@ export function ChatContent() {
     }
 
     return (
-        <div className='flex flex-col gap-4 pt-3 overflow-auto max-h-full'>
+        <div ref={listRef} className='flex flex-col gap-4 pt-3 overflow-auto max-h-screen' id='chatContainer'>
 
             {filteredChat.length && filteredChat.map((chat) => {
                 if (chat.fromUser === MY_USER_ID) {

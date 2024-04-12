@@ -10,6 +10,7 @@ export function SiteProvider({children}) {
     const [normalizedContactData, setNormalizedContactData] = useState([]);
     const [filterKeyword , setFilterKeyword] = useState('');
     const [sidebarOverlayIsOpen , setSidebarOverlayIsOpen] = useState(false);
+    const [ personalChat, setPersonalChat ] = useState([]);
 
     const value = {
         userId,
@@ -19,7 +20,9 @@ export function SiteProvider({children}) {
         filterKeyword,
         setFilterKeyword,
         sidebarOverlayIsOpen,
-        setSidebarOverlayIsOpen
+        setSidebarOverlayIsOpen,
+        personalChat,
+        setPersonalChat
     }
 
     return(

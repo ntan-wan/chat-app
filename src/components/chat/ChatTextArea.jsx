@@ -5,6 +5,8 @@ import { useMutation } from '@tanstack/react-query';
 import { addChat } from '@/services/serviceChat';
 import { useSite } from '@/providers/SiteProvider';
 import { MY_USER_ID } from '@/constants';
+import {useQueryClient} from '@tanstack/react-query'
+import { getChatById } from '@/services/serviceChat';
 
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
@@ -16,11 +18,7 @@ import { Aeroplane } from '@/components/icons/Aeroplane';
 
 export function ChatTextArea({ className }) {
 
-    const { userId } = useSite();
-    const mutation = useMutation({
-        mutationFn: addChat
-    })
-
+    const { userId, setPersonalChat } = useSite();
     const [inputValue, setInputValue] = useState('')
 
     const utils = [
@@ -35,20 +33,14 @@ export function ChatTextArea({ className }) {
         const data = {
             fromUser: MY_USER_ID,
             toUser: userId,
+
             message: inputValue,
         }
         // mutation.mutate(data)
         await addChat(data);
-
-        // const options = {
-        //     method: 'POST',
-        //     headers: {
-        //         "Content-Type" : "application/json",
-        //         "Access-Control-Allow-Headers": "*" 
-        //     },
-        //     body: JSON.stringify(data)
-        // }
-        // await fetch('http://18.143.79.95/api/chatSystem/chat/add', options)
+        const res = await getChatById(null, userId)
+        setPersonalChat(res.data)
+        setInputValue('')
 
     }
     const handleOnChange = (inputValue) => {
