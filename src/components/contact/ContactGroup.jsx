@@ -36,7 +36,7 @@ export function ContactGroup() {
         <h1 className='flex justify-between items-center'>Groups({groupListData?.length ?? '0'}) 
         <Button variant="iconOnly"><Plus /></Button>
         </h1>
-        <div className='mt-3'>
+        <div className='mt-3 overflow-auto max-h-[150px] pr-3'>
          
             {isLoading &&    <div className="flex flex-col gap-3">
                 <Skeleton />

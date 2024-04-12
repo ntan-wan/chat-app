@@ -43,7 +43,7 @@ export function UserDetails() {
 
     const user = normalizedContactData[userId]
 
-    return (<Card className='h-full p-0 overflow-hidden '>
+    return (<Card className='h-full p-0 xl:overflow-auto c-userDetail-height'>
         <div className='relative flex justify-center'>
             <LazyLoadImage  src={user?.profileImage} className='rounded-bl-lg rounded-br-lg z-10' />
             <UserCard user={user} className=' w-10/12 absolute bottom-[-25%] right-[9%] z-10' />

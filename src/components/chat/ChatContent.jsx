@@ -81,7 +81,7 @@ export function ChatContent() {
     }
 
     return (
-        <div ref={listRef} className='flex flex-col gap-4 pt-3 overflow-auto max-h-screen' id='chatContainer'>
+        <div ref={listRef} className='flex flex-col gap-4 pt-3 overflow-auto c-chat-height' id='chatContainer'>
 
             {filteredChat.length && filteredChat.map((chat) => {
                 if (chat.fromUser === MY_USER_ID) {

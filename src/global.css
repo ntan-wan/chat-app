@@ -60,6 +60,14 @@
 }
 
 @layer components {
+    .c-chat-height {
+        max-height: calc(100vh - 56px - 85px - 73px)
+    }
+
+    .c-userDetail-height {
+        max-height: 100vh
+    }
+
     .c-sidebar {
         @apply bg-primary rounded-e-2xl  px-3 pl-1 py-4 w-[55px] transition-all overflow-hidden fixed z-20;
 
