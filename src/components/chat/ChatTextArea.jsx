@@ -5,6 +5,7 @@ import { addChat } from '@/services/serviceChat';
 import {useSite} from '@/hooks/useSite';
 import { MY_USER_ID } from '@/constants';
 import { getChatById } from '@/services/serviceChat';
+import { usePostChat } from '@/hooks/useChats';
 
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
@@ -16,6 +17,7 @@ import { Aeroplane } from '@/components/icons/Aeroplane';
 
 export function ChatTextArea({ className }) {
 
+    
     const { userId, setPersonalChat } = useSite();
     const [inputValue, setInputValue] = useState('')
     const utils = [
@@ -25,6 +27,8 @@ export function ChatTextArea({ className }) {
         { label: 'Photo', Icon: Photo },
     ]
 
+    const {postChat} =  usePostChat();
+
 
     const handleOnSubmit = async (e) => {
         e.preventDefault();
@@ -33,9 +37,9 @@ export function ChatTextArea({ className }) {
             toUser: userId,
             message: inputValue,
         }
-        // mutation.mutate(data)
+        await postChat(data);
         await addChat(data);
-        const res = await getChatById(null, userId)
+        const res = await getChatById(userId)
         setPersonalChat(res.data)
         setInputValue('')
     }

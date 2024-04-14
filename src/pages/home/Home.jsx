@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useContacts } from '@/hooks/useContacts'
 import {useSite} from '@/hooks/useSite';
-
+import { useChatById } from '@/hooks/useChats';
 import { normalizeContactData } from '@/lib/utils'
 import { useGroupList } from '@/hooks/useContacts'
-import { getChatById } from '@/services/serviceChat';
 
 import { ContactSearch } from '@/components/contact/ContactSearch.jsx'
 import { ContactGroup } from '@/components/contact/ContactGroup.jsx'
@@ -15,8 +14,9 @@ import { UserDetails } from '@/components/user/UserDetails';
 export function Home() {
 
     const { userId, setUserId, personalChat, setPersonalChat, normalizedContactData, setNormalizedContactData } = useSite()
-    const [contactsData] = useContacts();
-    const [groupListData] = useGroupList()
+    const {contactsData} = useContacts();
+    const {groupListData} = useGroupList()
+    const {personalChatData}= useChatById(userId)
     const [user, setUser] = useState(null)
 
 
@@ -26,17 +26,13 @@ export function Home() {
             setNormalizedContactData(normalizeContactData(contactsData))
         }
     }, [contactsData])
-    useEffect( () => {
-        if (userId) {
-            (async () => {
-                const res = await getChatById(null, userId);
-                setPersonalChat(res.data)
-            })();
+    useEffect(() => {
+        if (personalChatData) {
+            setPersonalChat(personalChatData);
             setUser(normalizedContactData[userId])
         }
-    }, [userId])
-
-
+    }, [personalChatData])
+    
 
     return (
         <div className="flex flex-wrap flex-col md:flex-row">

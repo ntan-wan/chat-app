@@ -7,7 +7,7 @@ export async function getChats() {
     return res;
 }
 
-export async function getChatById( key ,userId) {
+export async function getChatById( userId) {
     const url = `http://18.143.79.95/api/chatSystem/chatByUserId/${userId}`;
     const res = await axios.get(url);
 
@@ -24,9 +24,8 @@ export async function addChat(data) {
     const config = {
         headers: {
         "Content-Type" : "application/json",
+        }
     }
-}
-
     const res = await axios.post(url, payload, config)
 
     return res;
