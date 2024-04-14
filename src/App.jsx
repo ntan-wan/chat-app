@@ -1,17 +1,17 @@
 import { MainLayout } from "@/layouts/MainLayout";
 import { Home } from "@/pages/home/Home";
-import { SiteProvider } from "@/providers/SiteProvider";
 import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
+import { StoreProvider } from "@/providers/StoreProvider";
 
 function App() {
   return (
-      <ReactQueryProvider>
-        <SiteProvider>
+    <ReactQueryProvider>
+      <StoreProvider>
           <MainLayout>
             <Home />
           </MainLayout>
-        </SiteProvider>
-      </ReactQueryProvider>
+      </StoreProvider>
+    </ReactQueryProvider>
   )
 }
 

@@ -1,4 +1,5 @@
-import {useSite} from '@/hooks/useSite';
+import { useDispatch } from 'react-redux';
+import { toggleSidebar } from '@/slices/siteSlice';
 
 import { Link } from "@/components/ui/Link"
 import {Button} from '@/components/ui/Button'
@@ -6,12 +7,12 @@ import {Menu} from '@/components/icons/Menu'
 
 export function Navbar() {
 
-    const { setSidebarOverlayIsOpen } = useSite();
+    const dispatch = useDispatch();
 
     return (<nav className="p-3 ">
         <h1 className="flex items-center justify-between ">Chat
         <Link className="text-base hidden md:block">Add New Profile</Link>
-        <Button  onClick={() => setSidebarOverlayIsOpen((prevState) => !prevState)} variant='iconOnly' className='block md:hidden'>
+        <Button  onClick={() => dispatch(toggleSidebar())} variant='iconOnly' className='block md:hidden'>
             <Menu />
         </Button>
         </h1>

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {useSite} from '@/hooks/useSite';
+import { useSelector } from 'react-redux';
 
 import { Card } from '@/components/ui/Card'
 import { AvatarAlphabet } from '@/components/ui/AvatarAlphabet'
@@ -11,7 +11,7 @@ import {Skeleton} from '@/components/ui/Skeleton'
 
 function GroupDisplayer({ group }) {
 
-    const {normalizedContactData} = useSite()
+    const normalizedContactData = useSelector((state) => state.site.normalizedContactData)
     const filteredContactsArr = group.users.map((user) => normalizedContactData[user]);
 
     

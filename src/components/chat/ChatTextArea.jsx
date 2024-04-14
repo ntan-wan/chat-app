@@ -2,10 +2,11 @@ import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import PropTypes from 'prop-types'
 import { addChat } from '@/services/serviceChat';
-import {useSite} from '@/hooks/useSite';
 import { MY_USER_ID } from '@/constants';
 import { getChatById } from '@/services/serviceChat';
 import { usePostChat } from '@/hooks/useChats';
+import { useSelector, useDispatch } from 'react-redux';
+import { setPersonalChat } from '@/slices/siteSlice';
 
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
@@ -17,8 +18,8 @@ import { Aeroplane } from '@/components/icons/Aeroplane';
 
 export function ChatTextArea({ className }) {
 
-    
-    const { userId, setPersonalChat } = useSite();
+    const dispatch = useDispatch()
+    const userId = useSelector((state) => state.site.userId)
     const [inputValue, setInputValue] = useState('')
     const utils = [
         { label: 'Tag', Icon: AtSymbol },
@@ -40,7 +41,7 @@ export function ChatTextArea({ className }) {
         await postChat(data);
         await addChat(data);
         const res = await getChatById(userId)
-        setPersonalChat(res.data)
+        dispatch(setPersonalChat(res.data))
         setInputValue('')
     }
     const handleOnChange = (inputValue) => {

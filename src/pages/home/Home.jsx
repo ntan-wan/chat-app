@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useContacts } from '@/hooks/useContacts'
-import {useSite} from '@/hooks/useSite';
 import { useChatById } from '@/hooks/useChats';
-import { normalizeContactData } from '@/lib/utils'
 import { useGroupList } from '@/hooks/useContacts'
+import { useSelector, useDispatch } from 'react-redux'
+import { setUserId } from '@/slices/siteSlice';
+import { setNormalizedContactData } from '@/slices/siteSlice';
+import {setPersonalChat} from '@/slices/siteSlice'
 
 import { ContactSearch } from '@/components/contact/ContactSearch.jsx'
 import { ContactGroup } from '@/components/contact/ContactGroup.jsx'
@@ -13,22 +15,26 @@ import { UserDetails } from '@/components/user/UserDetails';
 
 export function Home() {
 
-    const { userId, setUserId, personalChat, setPersonalChat, normalizedContactData, setNormalizedContactData } = useSite()
+    const dispatch = useDispatch()
+    const personalChat = useSelector((state) => state.site.personalChat)
+    const userId = useSelector((state) => state.site.userId)
+    const normalizedContactData = useSelector((state) => state.site.normalizedContactData);
     const {contactsData} = useContacts();
     const {groupListData} = useGroupList()
     const {personalChatData}= useChatById(userId)
     const [user, setUser] = useState(null)
-
-
+    
+    
     useEffect(() => {
+
         if (contactsData) {
-            setUserId(contactsData[0].id);
-            setNormalizedContactData(normalizeContactData(contactsData))
+            dispatch(setUserId(contactsData[0].id))
+            dispatch(setNormalizedContactData(contactsData))
         }
     }, [contactsData])
     useEffect(() => {
         if (personalChatData) {
-            setPersonalChat(personalChatData);
+            dispatch(setPersonalChat(personalChatData))
             setUser(normalizedContactData[userId])
         }
     }, [personalChatData])

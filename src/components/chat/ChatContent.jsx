@@ -3,8 +3,8 @@ import {cn} from '@/lib/utils'
 import PropTypes from 'prop-types'
 import { MY_USER_ID } from '@/constants';
 import { formatTime } from '@/lib/utils';
-import {useSite} from '@/hooks/useSite';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useSelector } from 'react-redux';
 
 import { Avatar } from '@/components/ui/Avatar';
 
@@ -53,7 +53,7 @@ ChatForward.propTypes = {
 
 export function ChatContent({personalChat, filterKeyword}) {
 
-    const {normalizedContactData} = useSite()
+    const normalizedContactData = useSelector((state) => state.site.normalizedContactData)
     const chatListRef = useRef(null);
     let filteredChat = [];
 

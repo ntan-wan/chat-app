@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import {useSite} from '@/hooks/useSite';
-
 import { formatTime } from '@/lib/utils'
 import { useQueryClient } from '@tanstack/react-query';
 import { MY_USER_ID } from '@/constants'
 import { scrollToView } from '@/lib/utils'
+import { useDispatch } from 'react-redux';
+import { setUserId } from '@/slices/siteSlice';
 
 import { Input } from "@/components/ui/Input"
 import { Avatar } from "@/components/ui/Avatar"
@@ -19,7 +19,7 @@ import { Skeleton } from "@/components/ui/Skeleton"
 
 function ContactDisplayer({ contact }) {
 
-    const { setUserId } = useSite()
+    const dispatch = useDispatch()
     const queryClient = useQueryClient();
     const chatsData = queryClient.getQueryData(['getChats'])?.data
     let personalChat = [];
@@ -29,7 +29,7 @@ function ContactDisplayer({ contact }) {
         return myChat.length === chats.length
     }
     const handleClick = (contactData) => {
-        setUserId(contactData.id)
+        dispatch(setUserId(contactData.id))
         if (window.innerWidth < 768) {
             scrollToView('chats')
         }

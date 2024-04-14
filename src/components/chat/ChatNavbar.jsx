@@ -1,5 +1,6 @@
-import {useSite} from '@/hooks/useSite';
 import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
+
 
 import { Avatar } from '@/components/ui/Avatar'
 import { MagnifyingGlass } from '@/components/icons/MagnifyingGlass'
@@ -11,8 +12,9 @@ import { Video } from '@/components/icons/Video'
 
 export function ChatNavbar({handleFilter}) {
 
-    const { userId, normalizedContactData } = useSite();
-    const contact = normalizedContactData[userId];
+    const userId = useSelector((state) => state.site.userId);
+    const normalizedContactData = useSelector((state) => state.site.normalizedContactData)
+    const contact =  normalizedContactData[userId];
     const buttons = [{ label: 'Phone', Icon: Phone }, { label: 'Video', Icon: Video }, { label: 'Others', Icon: ElipsisVertical }]
     
 
