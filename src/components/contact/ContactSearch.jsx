@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { useSite } from '@/providers/SiteProvider'
+import {useSite} from '@/hooks/useSite';
+
 import { formatTime } from '@/lib/utils'
 import { useQueryClient } from '@tanstack/react-query';
 import { MY_USER_ID } from '@/constants'

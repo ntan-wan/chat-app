@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useSite } from '@/providers/SiteProvider';
+import {useSite} from '@/hooks/useSite';
 
 import { Navbar } from "@/layouts/Navbar";
 import { Sidebar } from "@/layouts/Sidebar";

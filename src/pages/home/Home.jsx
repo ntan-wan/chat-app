@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useContacts } from '@/hooks/useContacts'
-import { useSite } from '@/providers/SiteProvider';
+import {useSite} from '@/hooks/useSite';
+
 import { normalizeContactData } from '@/lib/utils'
 import { useGroupList } from '@/hooks/useContacts'
 import { getChatById } from '@/services/serviceChat';

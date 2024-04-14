@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import PropTypes from 'prop-types'
 import { addChat } from '@/services/serviceChat';
-import { useSite } from '@/providers/SiteProvider';
+import {useSite} from '@/hooks/useSite';
 import { MY_USER_ID } from '@/constants';
 import { getChatById } from '@/services/serviceChat';
 

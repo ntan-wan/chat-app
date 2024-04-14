@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useSite } from '@/providers/SiteProvider';
+import {useSite} from '@/hooks/useSite';
 
 import { Card } from '@/components/ui/Card'
 import { AvatarAlphabet } from '@/components/ui/AvatarAlphabet'

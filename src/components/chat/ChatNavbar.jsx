@@ -1,4 +1,4 @@
-import { useSite } from '@/providers/SiteProvider';
+import {useSite} from '@/hooks/useSite';
 import PropTypes from 'prop-types'
 
 import { Avatar } from '@/components/ui/Avatar'

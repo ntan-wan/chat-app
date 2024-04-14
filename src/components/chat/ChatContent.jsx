@@ -3,7 +3,7 @@ import {cn} from '@/lib/utils'
 import PropTypes from 'prop-types'
 import { MY_USER_ID } from '@/constants';
 import { formatTime } from '@/lib/utils';
-import {useSite} from '@/providers/SiteProvider';
+import {useSite} from '@/hooks/useSite';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { Avatar } from '@/components/ui/Avatar';

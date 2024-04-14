@@ -1,5 +1,4 @@
-import { useSite } from '@/providers/SiteProvider';
-
+import {useSite} from '@/hooks/useSite';
 
 import { Link } from "@/components/ui/Link"
 import {Button} from '@/components/ui/Button'

@@ -1,10 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useState } from "react";
 import PropTypes from 'prop-types'
 
-const SiteContext = createContext({})
-
-export const useSite = () => useContext(SiteContext);
-
+export const SiteContext = createContext({})
 export function SiteProvider({children}) {
     const [userId, setUserId] = useState(null);
     const [normalizedContactData, setNormalizedContactData] = useState([]);
