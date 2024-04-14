@@ -1,11 +1,10 @@
 import { useEffect,  useRef} from 'react';
-import { getChatById } from '@/services/serviceChat';
-import {useSite} from '@/providers/SiteProvider';
-import PropTypes from 'prop-types'
-import { formatTime } from '@/lib/utils';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import {cn} from '@/lib/utils'
+import PropTypes from 'prop-types'
 import { MY_USER_ID } from '@/constants';
+import { formatTime } from '@/lib/utils';
+import {useSite} from '@/providers/SiteProvider';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { Avatar } from '@/components/ui/Avatar';
 
@@ -32,6 +31,7 @@ ChatReply.propTypes = {
     contact:PropTypes.object,
 }
 
+
 function ChatForward({chat, contact}) {
     return (
         <div className='flex justify-end gap-3 p-3'>
@@ -50,40 +50,33 @@ ChatForward.propTypes = {
     contact:PropTypes.object,
 }
 
-export function ChatContent() {
 
-    const {userId, normalizedContactData, filterKeyword, personalChat, setPersonalChat} = useSite()
-    const listRef = useRef(null);
+export function ChatContent({personalChat, filterKeyword}) {
+
+    const {normalizedContactData} = useSite()
+    const chatListRef = useRef(null);
     let filteredChat = [];
 
-    useEffect( () => {
-        if (userId) {
-            (async () => {
-                const res = await getChatById(null, userId);
-                setPersonalChat(res.data)
-            })()
-        }
-    }, [userId])
 
     useEffect(() => {
-        listRef.current?.lastElementChild?.scrollIntoView()
+        chatListRef.current?.lastElementChild?.scrollIntoView()
     }, [personalChat])
-
-
-    if (personalChat.length) {
+    
+    if (personalChat?.length) {
         filteredChat = personalChat.filter((chat) =>chat.message.toLowerCase().includes(filterKeyword.toLowerCase()))
     }
 
-    if (!filteredChat.length) {
-        return (
-            <p className='text-center text-neutral-400 pt-3'><i>No Chats Found</i></p>
-        )
-    }
 
     return (
-        <div ref={listRef} className='flex flex-col gap-4 pt-3 overflow-auto c-chat-height' id='chatContainer'>
+        <div ref={chatListRef} className='flex flex-col gap-4 pt-3 overflow-auto c-chat-height' id='chatContainer'>
 
-            {filteredChat.length && filteredChat.map((chat) => {
+            {!personalChat && <p className='text-center text-lg'><i>Loading ...</i></p>}
+
+            {personalChat && !filteredChat.length && 
+                <p className='text-center text-neutral-400 pt-3'><i>No Chats Found</i></p>
+            }
+
+            {filteredChat.length > 0 && filteredChat.map((chat) => {
                 if (chat.fromUser === MY_USER_ID) {
                     return <ChatForward key={chat.id} chat={chat} contact={normalizedContactData[chat.fromUser]}/>
                 } else  {
@@ -92,4 +85,8 @@ export function ChatContent() {
             })}
         </div>
     )
+}
+ChatContent.propTypes = {
+    personalChat: PropTypes.array,
+    filterKeyword:PropTypes.string
 }

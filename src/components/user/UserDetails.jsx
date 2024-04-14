@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types'
 import { cn } from '@/lib/utils'
-import { useSite } from '@/providers/SiteProvider';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { Card } from '@/components/ui/Card'
 import { AvatarAlphabet } from '@/components/ui/AvatarAlphabet';
-import { AvatarGroup } from '@/components/ui/AvatarGroup'
 import { Button } from '@/components/ui/Button'
 import { Video } from '@/components/icons/Video'
 import { ChatBubble } from '@/components/icons/ChatBubble'
@@ -38,17 +36,14 @@ UserCard.propTypes = {
     user: PropTypes.object
 }
 
-export function UserDetails() {
-    const { userId, normalizedContactData } = useSite();
 
-    const user = normalizedContactData[userId]
+export function UserDetails({user}) {
 
     return (<Card className='h-full p-0 xl:overflow-auto c-userDetail-height'>
         <div className='relative flex justify-center'>
             <LazyLoadImage  src={user?.profileImage} className='rounded-bl-lg rounded-br-lg z-10' />
             <UserCard user={user} className=' w-10/12 absolute bottom-[-25%] right-[9%] z-10' />
         </div>
-
 
         <div className=' mt-28 border-t border-b border-neutral-300 p-4 flex flex-col gap-3'>
             <h3 className='flex items-center justify-between  mb-2'>User Information <InfoCircle className='text-neutral-400' /></h3>
@@ -80,21 +75,17 @@ export function UserDetails() {
             <div className='mt-5 flex items-center gap-3'>
                 <div>
                     <LazyLoadImage className='max-w-full' src={dummyImg1} />
-
                 </div>
                 <div>
-
                     <LazyLoadImage className='max-w-full' src={dummyImg2} />
                 </div>
                 <div>
                     <LazyLoadImage className='max-w-full' src={dummyImg3} />
-
                 </div>
             </div>
         </div>
     </Card>)
 }
-
 UserDetails.propTypes = {
     user: PropTypes.object
 }

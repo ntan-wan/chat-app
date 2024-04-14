@@ -1,11 +1,9 @@
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import PropTypes from 'prop-types'
-import { useMutation } from '@tanstack/react-query';
 import { addChat } from '@/services/serviceChat';
 import { useSite } from '@/providers/SiteProvider';
 import { MY_USER_ID } from '@/constants';
-import {useQueryClient} from '@tanstack/react-query'
 import { getChatById } from '@/services/serviceChat';
 
 import { Input } from '@/components/ui/Input'
@@ -20,7 +18,6 @@ export function ChatTextArea({ className }) {
 
     const { userId, setPersonalChat } = useSite();
     const [inputValue, setInputValue] = useState('')
-
     const utils = [
         { label: 'Tag', Icon: AtSymbol },
         { label: 'Emoji', Icon: Emoji },
@@ -28,12 +25,12 @@ export function ChatTextArea({ className }) {
         { label: 'Photo', Icon: Photo },
     ]
 
+
     const handleOnSubmit = async (e) => {
         e.preventDefault();
         const data = {
             fromUser: MY_USER_ID,
             toUser: userId,
-
             message: inputValue,
         }
         // mutation.mutate(data)
@@ -41,11 +38,11 @@ export function ChatTextArea({ className }) {
         const res = await getChatById(null, userId)
         setPersonalChat(res.data)
         setInputValue('')
-
     }
     const handleOnChange = (inputValue) => {
         setInputValue(inputValue);
     }
+
 
     return <form onSubmit={(e) => handleOnSubmit(e)} className={cn('border-t p-3 border-neutral-300 flex  flex-col justify-between gap-4 sm:flex-row sm:items-center', className)}>
         <Input value={inputValue} onChange={(e) => handleOnChange(e.target.value)} placeholder="Type a message here.." className='grow' />
@@ -60,20 +57,6 @@ export function ChatTextArea({ className }) {
             </li>
         </ul>
     </form>
-
-    // return <div  className={cn('border-t p-3 border-neutral-300 flex items-center justify-between gap-4', className)}>
-    //     <Input value={inputValue} onChange={(e) => handleOnChange(e.target.value)} placeholder="Type a message here.." className='grow' />
-    //     <ul className='flex items-center gap-2'>
-    //         {utils.map((util) => <li key={util.label}>
-    //             <Button variant='iconOnly'>
-    //                 <util.Icon />
-    //             </Button>
-    //         </li>)}
-    //         <li>
-    //             <Button type='submit' onClick={(e) => handleOnSubmit(e)}><Aeroplane /></Button>
-    //         </li>
-    //     </ul>
-    // </div>
 }
 
 ChatTextArea.propTypes = {
